@@ -18,5 +18,6 @@ pipeline {
         }
     }
 }
+    
 // This Jenkinsfile defines a simple CI/CD pipeline with three stages: Build, Test, and Deploy.
 // Each stage contains a placeholder step that echoes a message to the console.
