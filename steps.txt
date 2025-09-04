@@ -1,0 +1,81 @@
+Setup / Prerequisites (Steps 1–4)
+
+Step 1 – Create your own GitHub repository
+
+Log in to GitHub → Click New Repository.
+
+Give it a name (e.g., jenkins-triggers-demo).
+
+Keep it public/private as you like → Initialize with README (optional).
+
+Step 2 – Set up SSH authentication with GitHub
+
+On your local machine, generate SSH key:
+
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+
+
+Copy public key (~/.ssh/id_rsa.pub) → Add it to GitHub → Settings → SSH and GPG Keys.
+
+Test with:
+
+ssh -T git@github.com
+
+
+Step 3 – Create a Jenkinsfile
+
+In your repo, create a file named Jenkinsfile.
+
+Start with a simple pipeline:
+
+pipeline {
+    agent any
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+            }
+        }
+    }
+}
+
+
+Step 4 – Commit and push Jenkinsfile
+
+git init
+git remote add origin git@github.com:yourusername/jenkins-triggers-demo.git
+git add Jenkinsfile
+git commit -m "Added Jenkinsfile"
+git push -u origin main
+
+🚀 Jenkins Setup & Triggers
+
+Step 5 – Create Jenkins job
+
+Open Jenkins → New Item → Pipeline.
+
+Link it to your GitHub repo via Pipeline script from SCM.
+
+Choose Git, enter repo SSH URL, select branch (e.g., main).
+
+Step 6 – Start testing triggers
+
+Enable different triggers inside Jenkins job:
+
+Poll SCM → Jenkins polls Git periodically.
+
+GitHub hook trigger → Push changes auto-trigger builds.
+
+Schedule triggers (like cron).
+
+Manual triggers via “Build Now”.
